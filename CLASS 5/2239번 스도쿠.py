@@ -1,5 +1,6 @@
 import sys
 
+# 가로에 겹치는 숫자가 있는지 탐색
 def check_row(row, num):
     for col in range(9):
         if puzzle[row][col] == num:
@@ -7,7 +8,7 @@ def check_row(row, num):
     
     return True
 
-
+# 세로에 겹치는 숫자가 있는지 탐색
 def check_col(col, num):
     for row in range(9):
         if puzzle[row][col] == num:
@@ -16,6 +17,7 @@ def check_col(col, num):
     return True
     
 
+# 3x3안에 겹치는 숫자가 있는지 탐색
 def check_block(row, col, num):
     row = row//3 * 3
     col = col//3 * 3
