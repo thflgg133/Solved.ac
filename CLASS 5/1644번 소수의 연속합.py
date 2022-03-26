@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 from math import sqrt
 
 def isPrime(N):
@@ -8,41 +7,35 @@ def isPrime(N):
     for i in range(2, int(sqrt(N))+1):
         if visited[i] == True:
             
-            for j in range(i+i, N, i):
+            for j in range(i+i, N+1, i):
                 visited[j] = False
 
-    return [i for i in range(2, N) if visited[i] == True]
+    return [i for i in range(2, N+1) if visited[i] == True]
     
 
 def two_pointer():
-    result = 0
-    tmp = deque([prime_list[0]]) # 초깃값
-    
-    if N < 5:
-        if N == 2 or N == 3:
-            return 1
-        
-        else:
-            return 0
-    
-    else:
-        if N in prime_list:
-            result += 1
-    
-        start, end = 0, 1
-    
-        while True:
-            if sum(tmp) == N:
-                result += 1
-    
-            if sum(tmp) < N:
-                tmp.append(prime_list[end])
-                end += 1
-                
-            if sum(tmp) > N:
-                tmp.popleft()
-                start += 1
+    cnt = 0
+    start = 0
+    end = 0
 
+    while end <= len(prime_list):
+        subtotal = sum(prime_list[start:end])
+
+        # 소수의 부분합이 타겟 넘버일 때
+        if subtotal == N:
+            cnt += 1
+            end += 1
+        
+        # 소수의 부분합이 타겟 넘버보다 작을 때
+        elif subtotal < N:
+            end += 1
+        
+        # 소수의 부분함이 타겟 넘버보다 클 때
+        else:
+            start += 1
+
+    return cnt
 
 N = int(sys.stdin.readline())
-prime_list = print(isPrime(N))
+prime_list = isPrime(N)
+print(two_pointer())
