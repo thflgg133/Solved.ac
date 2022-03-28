@@ -1,6 +1,7 @@
 import sys
 INF = sys.maxsize
 
+
 def next_cost(next, now):
     if now == 0:
         if next == 0:
@@ -12,11 +13,11 @@ def next_cost(next, now):
     elif now == next:
         return 1
 
-    elif abs(now - next) == 1 or abs(now - next) == 3:
-        return 3
+    elif (now - next) % 2 == 0:
+        return 4
 
     else:
-        return 4
+        return 3
 
 
 move = list(map(int, sys.stdin.readline().split()))
@@ -36,15 +37,14 @@ for i in range(len(move)):
             cost = next_cost(move[i], now) # 왼발이 현재 위치에서 move[i]로 움직임
             dp[i][move[i]][left] = min(dp[i][move[i]][left], dp[i-1][now][left] + cost)
 
-    
     for right in range(5): # 오른발이 움직일 때
         for now in range(5):
-            add_cost = next_cost(move[i], now) # 오른발이 현재 위치에서 move[i]로 움직임
+            cost = next_cost(move[i], now) # 오른발이 현재 위치에서 move[i]로 움직임
             dp[i][right][move[i]] = min(dp[i][right][move[i]], dp[i-1][right][now] + cost)
 
 ans = INF
-for i in range(5):
-    for j in range(5):
-        ans = min(ans, dp[len(move)-1][i][j])
+for right in range(5):
+    for left in range(5):
+        ans = min(ans, dp[len(move)-1][right][left])
 
 print(ans)
