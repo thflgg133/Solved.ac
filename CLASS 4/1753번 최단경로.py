@@ -11,7 +11,7 @@ def dijkstra(start):
     while heap:
         cost, now = heapq.heappop(heap)
       
-        if distance[now] < cost: # 똑같은 노드로 이동하는데 가중치가 최소인 방향으로 가기위한 코드
+        if distance[now] < cost: # 똑같은 노드로 이동하는데 가중치가 최소가 아니라면 패스
             continue
 
         for next_node, weight in graph[now]:
