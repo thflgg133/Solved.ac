@@ -10,7 +10,7 @@ for i in range(len(string)):
     
     # 시간 단축을 위해 stack에 마지막으로 들어온 문자랑 비교를 한다
     if stack[-1] == explosion[-1] and len(stack) >= len(explosion):
-        if stack[-len(explosion):] == explosion:
+        if stack[-len(explosion):] == explosion: # 문자열 폭발!
             stack[-len(explosion):] = []
             
 if stack:
