@@ -35,5 +35,6 @@ for i in range(N):
 
 print(len(answer))
 answer.sort()
+
 for i in range(len(answer)):
     print(answer[i])
