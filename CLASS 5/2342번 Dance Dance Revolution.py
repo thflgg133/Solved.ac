@@ -1,7 +1,6 @@
 import sys
 INF = sys.maxsize
 
-
 def next_cost(next, now):
     if now == 0:
         if next == 0:
