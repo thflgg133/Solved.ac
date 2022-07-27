@@ -97,7 +97,6 @@ for i in range(R):
     
 for _ in range(T):
     house = spread()
-    print(house)
     up()
     down()
 

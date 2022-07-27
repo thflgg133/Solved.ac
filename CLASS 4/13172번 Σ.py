@@ -2,6 +2,7 @@ import sys
 import math
 mod = int(1e9+7)
 
+# 분할 정복
 def Divide_and_Conquer(num, exp):
     if exp == 1: # 기댓값이 1 이면 
         return num
@@ -25,6 +26,5 @@ for _ in range(M):
 
     total +=  S * Divide_and_Conquer(N, mod-2) % mod
     total %= mod
-
 
 print(total)
